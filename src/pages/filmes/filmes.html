@@ -1,0 +1,63 @@
+<ion-header>
+
+    <ion-navbar>
+      <ion-title>Filmes</ion-title>
+    </ion-navbar>
+  
+  </ion-header>
+  
+  <!--
+  
+  -->
+  
+  <ion-content padding>
+    
+    <ion-refresher (ionRefresh)="doRefresh($event)">
+      <ion-refresher-content></ion-refresher-content>
+    </ion-refresher>
+    
+    <ion-card *ngFor="let filme of lista_filmes">
+  
+      <!--
+  Esse comando ngFor é para executar a página em loop e esse código vai executar pelo número da lista
+  -->
+  
+  
+      <ion-item>
+        <ion-avatar item-start>
+          <img src="assets/imgs/Bruno.jpg">
+        </ion-avatar>
+        <h2 class="feed_title">{{ filme.original_title }} </h2>
+        <p class="feed_date">{{ filme.release_date }}</p>
+      </ion-item>
+  
+      <img [src]="'https://image.tmdb.org/t/p/w500/' + filme.backdrop_path">
+  
+      <ion-card-content>
+        <p>{{ filme.overview }}</p>
+      </ion-card-content>
+  
+      <ion-row>
+        <ion-col>
+          <button ion-button icon-start clear small>
+            <ion-icon name="thumbs-up"></ion-icon>
+            <div>{{ objeto_feed.qntd_likes }}</div>
+          </button>
+        </ion-col>
+        <ion-col>
+          <button ion-button icon-start clear small>
+            <ion-icon name="text"></ion-icon>
+            <div>{{ objeto_feed.qntd_comments }}</div>
+          </button>
+        </ion-col>
+        <ion-col center text-center>
+          <ion-note>
+            {{ objeto_feed.time_comment }}
+          </ion-note>
+        </ion-col>
+      </ion-row>
+      <button ion-button block (click)="abreDetalhes(filme)">Detalhes</button>
+  
+    </ion-card>
+  
+  </ion-content>
